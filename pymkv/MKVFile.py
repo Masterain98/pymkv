@@ -6,33 +6,41 @@ Below are some basic examples of how the :class:`~pymkv.MKVFile` objects can be 
 
 Create and mux a new MKV. This example takes an standalone video and audio track and combines them into an MKV file.
 
->>> from pymkv import MKVFile
->>> mkv = MKVFile()
->>> mkv.add_track('/path/to/track.h264')
->>> mkv.add_track(MKVTrack('/path/to/another/track.aac'))
->>> mkv.mux('/path/to/output.mkv')
+```
+from pymkv import MKVFile
+mkv = MKVFile()
+mkv.add_track('/path/to/track.h264')
+mkv.add_track(MKVTrack('/path/to/another/track.aac'))
+mkv.mux('/path/to/output.mkv')
+```
 
 Generate the mkvmerge command to mux an MKV. This is example is identical to the first example except the command is
 only generated, not executed.
 
->>> mkv = MKVFile()
->>> mkv.add_track('/path/to/track.h264')
->>> mkv.add_track(MKVTrack('/path/to/another/track.aac'))
->>> mkv.command('/path/to/output.mkv')
+```
+mkv = MKVFile()
+mkv.add_track('/path/to/track.h264')
+mkv.add_track(MKVTrack('/path/to/another/track.aac'))
+mkv.command('/path/to/output.mkv')
+```
 
 Import an existing MKV and remove a track. This example will import an MKV that already exists on your filesystem,
 remove a track and allow you to mux that change into a new file.
 
->>> mkv = MKVFile('/path/to/file.mkv')
->>> mkv.remove_track(0)
->>> mkv.mux('/path/to/output.mkv')
+```
+mkv = MKVFile('/path/to/file.mkv')
+mkv.remove_track(0)
+mkv.mux('/path/to/output.mkv')
+```
 
 Combine two MKVs. This example takes two existing MKVs and combines their tracks into a single MKV file.
 
->>> mkv1 = MKVFile('/path/to/file1.mkv')
->>> mkv2 = MKVFile('/path/to/file2.mkv')
->>> mkv1.add_file(mkv2)
->>> mkv1.mux('/path/to/output.mkv')
+```
+mkv1 = MKVFile('/path/to/file1.mkv')
+mkv2 = MKVFile('/path/to/file2.mkv')
+mkv1.add_file(mkv2)
+mkv1.mux('/path/to/output.mkv')
+```
 """
 
 import json
@@ -42,11 +50,11 @@ import subprocess as sp
 
 import bitmath
 
-from pymkv.MKVTrack import MKVTrack
-from pymkv.MKVAttachment import MKVAttachment
-from pymkv.Timestamp import Timestamp
-from pymkv.ISO639_2 import is_iso639_2
-from pymkv.Verifications import verify_matroska, verify_mkvmerge
+from MKVTrack import MKVTrack
+from MKVAttachment import MKVAttachment
+from Timestamp import Timestamp
+from ISO639_2 import is_iso639_2
+from Verifications import verify_matroska, verify_mkvmerge
 
 
 class MKVFile:
@@ -949,8 +957,8 @@ class MKVFile:
 
         Examples
         --------
-        >>> tup = ((1, 2), (3, (4, 5)))
-        >>> print(MKVFile.flatten(tup))
+        tup = ((1, 2), (3, (4, 5)))
+        print(MKVFile.flatten(tup))
         [1, 2, 3, 4, 5]
 
         Parameters
