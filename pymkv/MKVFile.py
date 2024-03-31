@@ -50,11 +50,11 @@ import subprocess as sp
 
 import bitmath
 
-from MKVTrack import MKVTrack
-from MKVAttachment import MKVAttachment
-from Timestamp import Timestamp
-from ISO639_2 import is_iso639_2
-from Verifications import verify_matroska, verify_mkvmerge
+from .MKVTrack import MKVTrack
+from .MKVAttachment import MKVAttachment
+from .Timestamp import Timestamp
+from .ISO639_2 import is_iso639_2
+from .Verifications import verify_matroska, verify_mkvmerge
 
 
 class MKVFile:

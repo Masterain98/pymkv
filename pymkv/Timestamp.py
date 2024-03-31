@@ -107,7 +107,7 @@ class Timestamp:
     def ts(self):
         """Generates the timestamp specified in the object."""
         # parse timestamp format
-        format_groups = match('^(([Hh]{1,2}):)?([Mm]{1,2}):([Ss]{1,2})(\.([Nn]{1,9}))?$', self.form).groups()
+        format_groups = match(r'^(([Hh]{1,2}):)?([Mm]{1,2}):([Ss]{1,2})(\.([Nn]{1,9}))?$', self.form).groups()
         timestamp_format = [format_groups[i] is not None for i in (1, 2, 3, 5)]
 
         # create timestamp string
@@ -187,7 +187,7 @@ class Timestamp:
         """
         if not isinstance(timestamp, str):
             raise TypeError(f'"{type(timestamp)}" is not str type')
-        elif match('^[0-9]{1,2}(:[0-9]{1,2}){1,2}(\.[0-9]{1,9})?$', timestamp):
+        elif match(r'^[0-9]{1,2}(:[0-9]{1,2}){1,2}(\.[0-9]{1,9})?$', timestamp):
             return True
         return False
 
@@ -239,7 +239,7 @@ class Timestamp:
             -------
         '''
         """
-        timestamp_groups = match('^(([0-9]{1,2}):)?([0-9]{1,2}):([0-9]{1,2})(\.([0-9]{1,9}))?$', timestamp).groups()
+        timestamp_groups = match(r'^(([0-9]{1,2}):)?([0-9]{1,2}):([0-9]{1,2})(\.([0-9]{1,9}))?$', timestamp).groups()
 
         timestamp = [timestamp_groups[i] for i in (1, 2, 3, 4)]
         timestamp_clean = []

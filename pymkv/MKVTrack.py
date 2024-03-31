@@ -50,10 +50,10 @@ from os.path import expanduser, isfile
 import subprocess as sp
 from pathlib import Path
 
-from TypeTrack import get_track_extension
-from Verifications import verify_supported
-from ISO639_2 import is_iso639_2
-from BCP47 import is_bcp47
+from .TypeTrack import get_track_extension
+from .Verifications import verify_supported
+from .ISO639_2 import is_iso639_2
+from .BCP47 import is_bcp47
 
 
 class MKVTrack:

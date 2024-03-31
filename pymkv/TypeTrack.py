@@ -1,6 +1,6 @@
 from typing import Optional
 
-import MKVTrack
+from . import MKVTrack
 
 type_files = {
     "video": {
