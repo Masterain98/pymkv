@@ -310,16 +310,29 @@ class MKVFile:
         stderr = sp.PIPE
 
         proc = sp.Popen(args, stdout=stdout, stderr=stderr)
-        _, err = proc.communicate()
+        out, err = proc.communicate()
 
-        if proc.returncode:
+        if proc.returncode != 0:
             error_message = f"Command failed with non-zero exit status {proc.returncode}"
+
+            if out:
+                output_details = out.decode('utf-8', errors='ignore')
+                print(f"Standard Output (including possible errors):\n{output_details}")
+                logging.error(output_details)
+
             if err:
-                error_details = err.decode()
+                error_details = err.decode('utf-8', errors='ignore')
                 error_message += f"\nError Output:\n{error_details}"
+                print(f"Error Details:\n{error_details}")
+                logging.error(f"Error Details:\n{error_details}")
+            else:
+                error_details = "No error output was provided."
+                print(f"Error Details: {error_details}")
                 logging.error(error_details)
-            logging.error("Non-zero exit status when running %s (%s)", args, proc.returncode)
-            raise ValueError(error_message)
+
+            logging.error("Non-zero exit status when running %s (%s)", " ".join(args), proc.returncode)
+
+            raise ValueError(error_message + "\n" + error_details + "\nCommand: " + " ".join(args))
 
         return proc.returncode
 

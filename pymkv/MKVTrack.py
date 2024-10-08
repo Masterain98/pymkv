@@ -316,7 +316,7 @@ class MKVTrack:
         if language_ietf is None or is_bcp47(language_ietf):
             self._language_ietf = language_ietf
         else:
-            raise ValueError('not a BCP47 language code')
+            raise ValueError(f'{language_ietf} is not a BCP47 language code')
 
     @property
     def tags(self):
